@@ -62,7 +62,7 @@ export default function Tooltip({ name, children, direction, className,tooltipCl
       <FloatingPortal>
         {isOpen && (
           <div
-            className={cn( "bg-white rounded px-2", tooltipClassName)}
+            className={cn( " dark:bg-white bg-dark-950 text-light-50 dark:text-dark-950 rounded px-2", tooltipClassName)}
             ref={refs.setFloating}
             style={floatingStyles}
             {...getFloatingProps()}
