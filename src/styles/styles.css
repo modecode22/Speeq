@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=REM:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@layer base {
+    h1 {
+      @apply text-4xl font-bold leading-10 tracking-tight mb-4;
+    }
+    h2 {
+      @apply text-3xl font-semibold leading-9 tracking-tight mb-4;
+    }
+    h3 {
+      @apply text-2xl font-medium leading-8 tracking-normal mb-3;
+    }
+    h4 {
+      @apply text-xl font-medium leading-7 tracking-normal mb-3;
+    }
+    h5 {
+      @apply text-lg font-medium leading-6 tracking-normal mb-2;
+    }
+    h6 {
+      @apply text-base font-semibold leading-5 tracking-normal mb-2;
+    }
+    p {
+      @apply text-base leading-7 tracking-normal mb-4;
+    }
+    ul, ol {
+      @apply text-base leading-7 list-inside mb-4;
+    }
+    li {
+      @apply mb-2;
+    }
+    /* a {
+      @apply text-primary-600 hover:text-primary-800 underline;
+    } */
+  }
+
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: 'REM', sans-serif;
+}
