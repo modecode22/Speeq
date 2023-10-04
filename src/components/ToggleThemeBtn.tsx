@@ -30,7 +30,7 @@ option:"light"
           updateTheme(value);
         }}
       >
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger name="theme" className="w-full">
           <SelectValue placeholder="Select Theme" />
         </SelectTrigger>
         <SelectContent
