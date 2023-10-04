@@ -56,6 +56,9 @@ dependencies:
   react-router-dom:
     specifier: ^6.16.0
     version: 6.16.0(react-dom@18.2.0)(react@18.2.0)
+  react-speech-recognition:
+    specifier: ^3.10.0
+    version: 3.10.0(react@18.2.0)
   tailwind-merge:
     specifier: ^1.14.0
     version: 1.14.0
@@ -76,6 +79,9 @@ devDependencies:
   '@types/react-dom':
     specifier: ^18.2.7
     version: 18.2.8
+  '@types/react-speech-recognition':
+    specifier: ^3.9.2
+    version: 3.9.2
   '@vitejs/plugin-react':
     specifier: ^4.0.3
     version: 4.1.0(vite@4.4.9)
@@ -1438,6 +1444,10 @@ packages:
       '@babel/types': 7.23.0
     dev: true
 
+  /@types/dom-speech-recognition@0.0.2:
+    resolution: {integrity: sha512-GZbxBsBYBMAbpPDYg64KhAr/V8MbrlsNqrjnZJGikLdNqlQbTu+u548jg7c31ZI30/vXAX+v31t/aDr4soiBEg==}
+    dev: true
+
   /@types/hoist-non-react-statics@3.3.2:
     resolution: {integrity: sha512-YIQtIg4PKr7ZyqNPZObpxfHsHEmuB8dXCxd6qVcGuQVDK2bpsF7bYNnBJ4Nn7giuACZg+WewExgrtAJ3XnA4Xw==}
     dependencies:
@@ -1456,6 +1466,12 @@ packages:
     resolution: {integrity: sha512-bAIvO5lN/U8sPGvs1Xm61rlRHHaq5rp5N3kp9C+NJ/Q41P8iqjkXSu0+/qu8POsjH9pNWb0OYabFez7taP7omw==}
     dependencies:
       '@types/react': 18.2.24
+
+  /@types/react-speech-recognition@3.9.2:
+    resolution: {integrity: sha512-LS13Z4A8nluGWyT1NQncWoyaWARJdEojxmcRvaFDT9nTHpRkMgPjaYBJIc/9GBRYYFy8TQGaiCmUdH2g4M9INg==}
+    dependencies:
+      '@types/dom-speech-recognition': 0.0.2
+    dev: true
 
   /@types/react@18.2.24:
     resolution: {integrity: sha512-Ee0Jt4sbJxMu1iDcetZEIKQr99J1Zfb6D4F3qfUWoR1JpInkY1Wdg4WwCyBjL257D0+jGqSl1twBjV8iCaC0Aw==}
@@ -2156,6 +2172,14 @@ packages:
       react: '>=16.8'
     dependencies:
       '@remix-run/router': 1.9.0
+      react: 18.2.0
+    dev: false
+
+  /react-speech-recognition@3.10.0(react@18.2.0):
+    resolution: {integrity: sha512-EVSr4Ik8l9urwdPiK2r0+ADrLyDDrjB0qBRdUWO+w2MfwEBrj6NuRmy1GD3x7BU/V6/hab0pl8Lupen0zwlJyw==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
       react: 18.2.0
     dev: false
 
