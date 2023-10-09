@@ -1,69 +1,64 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
+import { getFromLocalStorage } from "../lib/utils";
 
-
-
-type ContextType = {
-  theme: ThemeType;
-  updateTheme: (theme: ThemeType) => void;
-  language: string;
-  updateLanguage: (language: string) => void;
-};
-// Language Context
+// Settings Context Initialization
 const SettingsContext = createContext<ContextType>({
   theme: "dark",
   updateTheme: () => {},
-  language:  "eng",
+  language: "eng",
   updateLanguage: () => {},
+  device: undefined,
+  updateDevice: () => {},
+  devices: []
 });
 
+export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
-export const SettingsProvider = ({ children }: { children :React.ReactNode}) => {
+  // States
+  const [theme, setTheme] = useState<ThemeType>(getFromLocalStorage("theme", "dark"));
+  const [language, setLanguage] = useState<string>(getFromLocalStorage("lang", "eng"));
+  const [device, setDevice] = useState<string | undefined>(getFromLocalStorage("device", undefined));
+  const [devices, setDevices] = useState<MediaDeviceInfo[]>([]);
 
-  const [theme, setTheme] = useState<ThemeType>(
-    JSON.parse(localStorage.getItem("theme") as ThemeType) ||
-      "dark"
-  ); // Default theme is dark
-  const [language, setLanguage] = useState<string>(
-    JSON.parse(localStorage.getItem("lang") as string) ||
-      "eng"
-  ); // Default theme is dark
+  // Update and Store functions
+  const updateAndStore = (key: string, value: any, updater: React.Dispatch<React.SetStateAction<any>>) => {
+    updater(value);
+    localStorage.setItem(key, JSON.stringify(value));
+  };
 
-    const updateTheme = (theme: ThemeType) => {
-      setTheme(theme);
-      localStorage.setItem("theme", JSON.stringify(theme));
-    };
-
-
-    const updateLanguage = (language: string) => {
-      setLanguage(language);
-      localStorage.setItem("lang", JSON.stringify(language));
-    };
-
-
-    useEffect(() => {
-      const className = "dark";
-      const htmlClass = document.documentElement.classList;
-      theme === "dark"
-        ? htmlClass.add(className)
-        : htmlClass.remove(className);
-    }, [theme]);
+  // Effects
+  useEffect(() => {
+    // Update the DOM class based on theme
+    const className = "dark";
+    const htmlClass = document.documentElement.classList;
+    theme === "dark" ? htmlClass.add(className) : htmlClass.remove(className);
+  }, [theme]);
 
   useEffect(() => {
-        if (!localStorage.getItem("theme")) {
-          localStorage.setItem("theme", JSON.stringify("dark"));
-        }
-        if (!localStorage.getItem("lang")) {
-          localStorage.setItem("lang", JSON.stringify("eng"));
-        }
-  }, []);
+    // Enumerate devices if available
+    if (navigator.mediaDevices && typeof navigator.mediaDevices.enumerateDevices === 'function') {
+      navigator.mediaDevices.enumerateDevices()
+        .then((allDevices) => {
+          const audioDevices = allDevices.filter(device => device.kind === 'audiooutput');
+          setDevices(audioDevices);
+          
+          if (!device && audioDevices.length > 0) {
+            updateAndStore("device", audioDevices[0].deviceId, setDevice);
+          }
+        });
+    }
+  }, [device]);
 
   return (
     <SettingsContext.Provider
       value={{
         theme,
-        updateTheme,
+        updateTheme: (value: ThemeType) => updateAndStore("theme", value, setTheme),
         language,
-        updateLanguage
+        updateLanguage: (value: string) => updateAndStore("lang", value, setLanguage),
+        device,
+        updateDevice: (value: string) => updateAndStore("device", value, setDevice),
+        devices
       }}
     >
       {children}

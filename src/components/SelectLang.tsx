@@ -3,12 +3,10 @@ import { useSettings } from "./SettingsProvider";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { log } from "console";
 
 const SelectLang = () => {
   const { language, updateLanguage } = useSettings();
@@ -127,6 +125,7 @@ const SelectLang = () => {
       onValueChange={(value: string) => {
         updateLanguage(value);
       }}
+      defaultValue={language}
     >
       <SelectTrigger name="language" className="w-full">
         <SelectValue placeholder="Select Language" />
