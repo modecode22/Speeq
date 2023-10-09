@@ -4,6 +4,7 @@ import ToggleThemeBtn from "../components/ToggleThemeBtn";
 import SelectLang from "../components/SelectLang";
 import { motion } from 'framer-motion'
 import { AnimatedButtonVariants } from "../lib/animation-utils";
+import SelectDevice from "../components/SelectDevice";
 const Settings = () => {
   return (
     <section>
@@ -17,15 +18,21 @@ const Settings = () => {
       <main className="p-5 flex flex-col gap-5 select-none">
         <section className="flex flex-col ">
           <label htmlFor="theme" className="px-2">
-            theme :
+            Selected Device  :
           </label>
-          <ToggleThemeBtn />
+          <SelectDevice />
         </section>
         <section className="flex flex-col ">
           <label htmlFor="theme" className="px-2">
             Translate to :
           </label>
           <SelectLang />
+        </section>
+        <section className="flex flex-col ">
+          <label htmlFor="theme" className="px-2">
+            theme :
+          </label>
+          <ToggleThemeBtn />
         </section>
       </main>
     </section>
