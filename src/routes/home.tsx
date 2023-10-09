@@ -7,7 +7,7 @@ import { AnimatedButtonVariants } from "../lib/animation-utils";
 const Home = () => {
   
   return (
-    <section>
+    <section className="flex-grow  h-full  ">
       <header className="flex  items-center w-full justify-end p-3 gap-3">
        <motion.button initial={'initial'} exit={'exit'} whileHover={'hover'} animate={'animate'}  variants={AnimatedButtonVariants}>
         <Link  to={'settings'}>
@@ -15,8 +15,8 @@ const Home = () => {
         </Link>
        </motion.button>
       </header>
-      <main className="p-5 flex flex-col gap-5 select-none">
-        <section className="flex flex-col ">
+      <main className="p-5 flex flex-col gap-5 flex-grow  h-[70vh] w-full justify-center items-center select-none">
+        <section className="flex flex-col w-full">
           <Recorder/>
         </section>
       </main>
