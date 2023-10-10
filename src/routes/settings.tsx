@@ -1,10 +1,11 @@
 import { RiArrowGoBackFill, RiUser3Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import ToggleThemeBtn from "../components/ToggleThemeBtn";
-import SelectLang from "../components/SelectLang";
 import { motion } from 'framer-motion'
 import { AnimatedButtonVariants } from "../lib/animation-utils";
 import SelectDevice from "../components/SelectDevice";
+import SelectToLang from "../components/SelectToLang";
+import SelectFromLang from "../components/SelectFromLang";
 const Settings = () => {
   return (
     <section>
@@ -24,9 +25,15 @@ const Settings = () => {
         </section>
         <section className="flex flex-col ">
           <label htmlFor="theme" className="px-2">
-            Translate to :
+            Translate from :
           </label>
-          <SelectLang />
+          <SelectFromLang />
+        </section>
+        <section className="flex flex-col ">
+          <label htmlFor="theme" className="px-2">
+             To :
+          </label>
+          <SelectToLang />
         </section>
         <section className="flex flex-col ">
           <label htmlFor="theme" className="px-2">
