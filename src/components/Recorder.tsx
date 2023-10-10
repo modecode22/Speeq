@@ -89,7 +89,7 @@ const Recorder: React.FC = () => {
   };
   return (
     <section className="h-full w-full flex justify-center items-center flex-col gap-5">
-      <Tooltip direction="bottom" name={isRecording ? "Stop" : "Record"}>
+      <Tooltip direction="bottom" name={isLoading?"loading...":isRecording ? "Stop" : "Record"}>
         <motion.button
           className=" flex flex-col items-center  justify-evenly rounded-full"
           onClick={handleRecordButtonClick}
