@@ -4,10 +4,7 @@ type ThemeArray = [
     { option: "light"; name: "light" },
     { option: "dark"; name: "dark" }
   ];
-  type Language = {
-    shortName: string;
-    longName: string;
-  };
+  type Language = string
   
   type LanguageArray = Language[]
 
@@ -15,8 +12,10 @@ type ThemeArray = [
   type ContextType = {
     theme: ThemeType;
     updateTheme: (theme: ThemeType) => void;
-    language: string;
-    updateLanguage: (language: string) => void;
+    fromLanguage: string;
+    updateFromLanguage: (language: string) => void;
+    toLanguage: string;
+    updateToLanguage: (language: string) => void;
     device: string | undefined;
     updateDevice: (device: string) => void;
     devices: MediaDeviceInfo[];
