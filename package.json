@@ -32,6 +32,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@gradio/client": "^0.5.1",
     "@tauri-apps/cli": "^1.5.0",
     "@types/node": "^20.8.2",
     "@types/react": "^18.2.15",
