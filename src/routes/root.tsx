@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, useLoaderData } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { ScrollArea } from "../components/ui/scroll-bar";
 import { Toaster } from "../components/ui/toaster";
 import CustomTitlebar from "../components/CustomTitlebar";

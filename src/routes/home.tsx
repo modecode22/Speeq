@@ -1,4 +1,4 @@
-import { RiSettings4Line, RiUser3Line } from "react-icons/ri";
+import {  RiUser3Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import Recorder from "../components/Recorder";
 import { motion } from "framer-motion";
