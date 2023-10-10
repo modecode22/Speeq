@@ -5,8 +5,10 @@ import { getFromLocalStorage } from "../lib/utils";
 const SettingsContext = createContext<ContextType>({
   theme: "dark",
   updateTheme: () => {},
-  language: "eng",
-  updateLanguage: () => {},
+  fromLanguage: "English",
+  updateFromLanguage: () => {},
+  toLanguage: "English",
+  updateToLanguage: () => {},
   device: undefined,
   updateDevice: () => {},
   devices: []
@@ -16,7 +18,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   // States
   const [theme, setTheme] = useState<ThemeType>(getFromLocalStorage("theme", "dark"));
-  const [language, setLanguage] = useState<string>(getFromLocalStorage("lang", "eng"));
+  const [fromLanguage, setFromLanguage] = useState<string>(getFromLocalStorage("fromlang", "English"));
+  const [toLanguage, setToLanguage] = useState<string>(getFromLocalStorage("tolang", "English"));
   const [device, setDevice] = useState<string | undefined>(getFromLocalStorage("device", undefined));
   const [devices, setDevices] = useState<MediaDeviceInfo[]>([]);
 
@@ -43,6 +46,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
           setDevices(audioDevices);
           
           if (!device && audioDevices.length > 0) {
+
             updateAndStore("device", audioDevices[0].deviceId, setDevice);
           }
         });
@@ -54,8 +58,10 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       value={{
         theme,
         updateTheme: (value: ThemeType) => updateAndStore("theme", value, setTheme),
-        language,
-        updateLanguage: (value: string) => updateAndStore("lang", value, setLanguage),
+        fromLanguage,
+        updateFromLanguage: (value: string) => updateAndStore("fromlang", value, setFromLanguage),
+        toLanguage,
+        updateToLanguage: (value: string) => updateAndStore("tolang", value, setToLanguage),  
         device,
         updateDevice: (value: string) => updateAndStore("device", value, setDevice),
         devices
