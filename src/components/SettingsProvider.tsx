@@ -14,6 +14,25 @@ const SettingsContext = createContext<ContextType>({
   devices: []
 });
 
+function handleAudioStream(stream:MediaStream,deviceId:string) {
+  const audioElement = new Audio();
+  audioElement.srcObject = stream;
+
+
+  if (typeof (audioElement as any).sinkId !== 'undefined') {
+    (audioElement as any).setSinkId(deviceId)
+      .then(() => {
+        audioElement.play();
+      })
+      .catch((err: unknown) => {
+        console.error("Error setting the audio output device:", JSON.stringify(err));
+      });
+  } else {
+    console.warn("Your browser does not support output device selection.");
+  }
+}
+
+
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   // States
@@ -39,6 +58,12 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   useEffect(() => {
     navigator.mediaDevices.getUserMedia({  audio: true })
+    .then(stream =>{
+      if(device) {
+        handleAudioStream(stream,device);
+      }})
+    .catch(error => console.error("Error accessing microphone.", error));
+  
     // Enumerate devices if available
     if (navigator.mediaDevices && typeof navigator.mediaDevices.enumerateDevices === 'function') {
       navigator.mediaDevices.enumerateDevices()

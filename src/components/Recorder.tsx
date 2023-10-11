@@ -32,8 +32,8 @@ const Recorder: React.FC = () => {
       if (audioChunksRef.current.length > 0) {
         const audioBlob = new Blob(audioChunksRef.current, { type: "audio/wav" });
         const newAudioUrl = URL.createObjectURL(audioBlob);
-        setAudioUrl(newAudioUrl);
-        await sendAudioToGradio(newAudioUrl);
+        // setAudioUrl(newAudioUrl);
+                await sendAudioToGradio(newAudioUrl);
       }
     };
 
