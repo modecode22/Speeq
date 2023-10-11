@@ -38,6 +38,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, [theme]);
 
   useEffect(() => {
+    navigator.mediaDevices.getUserMedia({  audio: true })
     // Enumerate devices if available
     if (navigator.mediaDevices && typeof navigator.mediaDevices.enumerateDevices === 'function') {
       navigator.mediaDevices.enumerateDevices()
