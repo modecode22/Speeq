@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import ToggleThemeBtn from "../components/ToggleThemeBtn";
 import { motion } from 'framer-motion'
 import { AnimatedButtonVariants } from "../lib/animation-utils";
-import SelectDevice from "../components/SelectDevice";
+import SelectOutputDevice from "../components/SelectOutputDevice";
 import SelectToLang from "../components/SelectToLang";
 import SelectFromLang from "../components/SelectFromLang";
+import SelectInputDevice from "../components/SelectInputDevice";
 const Settings = () => {
   return (
     <section>
@@ -19,9 +20,15 @@ const Settings = () => {
       <main className="p-5 flex flex-col gap-5 select-none">
         <section className="flex flex-col ">
           <label htmlFor="theme" className="px-2">
-            Selected Device  :
+             Input Device  :
           </label>
-          <SelectDevice />
+          <SelectInputDevice />
+        </section>
+        <section className="flex flex-col ">
+          <label htmlFor="theme" className="px-2">
+             Output Device  :
+          </label>
+          <SelectOutputDevice />
         </section>
         <section className="flex flex-col ">
           <label htmlFor="theme" className="px-2">
