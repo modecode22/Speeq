@@ -1,31 +1,37 @@
 import { useEffect, useState } from "react";
 import { useSettings } from "./SettingsProvider";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 const SelectInputDevice = () => {
-    const { inputDevice,devices, updateInputDevice } = useSettings();
+  const { inputDevice, devices, updateInputDevice } = useSettings();
 
-    const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-    useEffect(() => {
-      setMounted(true);
-    }, []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   return (
     <Select
-    onValueChange={(value: string) => {
+      onValueChange={(value: string) => {
         updateInputDevice(value);
-    }}
-    defaultValue={inputDevice}
-  >
-    <SelectTrigger name="input device" className="w-full">
-      <SelectValue placeholder="Select Device" />
-    </SelectTrigger>
-    <SelectContent
-      onSelect={(e) => {
-        e.target;
       }}
-      className="max-h-[300px] "
+      defaultValue={inputDevice}
     >
+      <SelectTrigger name="input device" className="w-full">
+        <SelectValue placeholder="Select Device" />
+      </SelectTrigger>
+      <SelectContent
+        onSelect={(e) => {
+          e.target;
+        }}
+        className="max-h-[300px] "
+      >
         {devices.map((device) => {
           return (
             <SelectItem key={device.deviceId} value={device.deviceId}>
@@ -33,9 +39,9 @@ const SelectInputDevice = () => {
             </SelectItem>
           );
         })}
-    </SelectContent>
-  </Select>  )
-}
+      </SelectContent>
+    </Select>
+  );
+};
 
-
-export default SelectInputDevice
+export default SelectInputDevice;

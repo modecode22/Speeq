@@ -1,35 +1,31 @@
 import { LuMaximize } from "react-icons/lu";
-import {  MdClose } from "react-icons/md";
-import {  HiMiniMinus } from "react-icons/hi2";
+import { MdClose } from "react-icons/md";
+import { HiMiniMinus } from "react-icons/hi2";
 import { useCallback } from "react";
 const CustomTitlebar = () => {
-      const minimizeWindow = useCallback(async () => {
-                const { appWindow } = await import("@tauri-apps/api/window");
-                 await appWindow?.minimize();
+  const minimizeWindow = useCallback(async () => {
+    const { appWindow } = await import("@tauri-apps/api/window");
+    await appWindow?.minimize();
+  }, []);
 
-      }, []);
+  const maximizeWindow = useCallback(async () => {
+    const { appWindow } = await import("@tauri-apps/api/window");
+    const isMaximized = await appWindow?.isMaximized();
 
+    if (isMaximized) {
+      appWindow?.unmaximize();
+    } else {
+      appWindow?.maximize();
+    }
+  }, []);
 
-      const maximizeWindow = useCallback(async () => {
-        const { appWindow } = await import("@tauri-apps/api/window");
-        const isMaximized = await appWindow?.isMaximized();
-
-        if (isMaximized) {          
-          appWindow?.unmaximize();
-        } else {
-          appWindow?.maximize();
-        }
-      }, []);
-
-      const closeWindow = useCallback(async () => {
-        const { appWindow } = await import("@tauri-apps/api/window");
-        appWindow.close();
-      }, []);
+  const closeWindow = useCallback(async () => {
+    const { appWindow } = await import("@tauri-apps/api/window");
+    appWindow.close();
+  }, []);
 
   return (
-    <header
-      className="fixed flex z-[999] justify-between h-8 w-full inset-0 bg-light-50 shadow-sm dark:bg-dark-950"
-    >
+    <header className="fixed flex z-[999] justify-between h-8 w-full inset-0 bg-light-50 shadow-sm dark:bg-dark-950">
       <section className="h-full flex items-center  px-2 select-none ">
         <img src={"/logo.svg"} alt="logo" className="w-8" />
         <strong className=" font-semibold">SPEEQ</strong>
@@ -58,6 +54,6 @@ const CustomTitlebar = () => {
       </section>
     </header>
   );
-}
+};
 
-export default CustomTitlebar
+export default CustomTitlebar;

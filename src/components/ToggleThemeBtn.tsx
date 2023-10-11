@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 import { useSettings } from "./SettingsProvider";
 
 const ToggleThemeBtn = () => {
-
-const {theme , updateTheme} =useSettings()
-const themeOptions:ThemeArray = [
-  {
-name:"light",
-option:"light"
-  },
-  {
-    name:"dark",
-    option:"dark"
-  }
-]
+  const { theme, updateTheme } = useSettings();
+  const themeOptions: ThemeArray = [
+    {
+      name: "light",
+      option: "light",
+    },
+    {
+      name: "dark",
+      option: "dark",
+    },
+  ];
 
   const [mounted, setMounted] = useState(false);
 
@@ -39,9 +45,13 @@ option:"light"
           }}
         >
           <SelectGroup>
-        {themeOptions.map(theme=>{
-          return <SelectItem key={theme.option} value={theme.option}>{theme.name}</SelectItem>;
-        })}
+            {themeOptions.map((theme) => {
+              return (
+                <SelectItem key={theme.option} value={theme.option}>
+                  {theme.name}
+                </SelectItem>
+              );
+            })}
           </SelectGroup>
         </SelectContent>
       </Select>

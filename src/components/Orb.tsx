@@ -2,23 +2,25 @@ import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 
 interface OrbProps {
-  color: "primary" | "error"  | "loading"|"success"|"recording";
+  color: "primary" | "error" | "loading" | "success" | "recording";
   children?: React.ReactNode;
 }
 
 const colors = {
-  primary: "radial-gradient(circle at center, hsl(164, 83%, 60%), hsl(164, 85%, 65%))",
+  primary:
+    "radial-gradient(circle at center, hsl(164, 83%, 60%), hsl(164, 85%, 65%))",
   error: "radial-gradient(circle at center, hsl(0, 65%, 55%),hsl(0, 70%, 65%)",
-   loading: "radial-gradient(circle at center,hsl(240, 65%, 55%), hsl(240, 70%, 65%))",
-   success: "radial-gradient(circle at center,hsl(120, 65%, 55%), hsl(120, 70%, 65%)",
+  loading:
+    "radial-gradient(circle at center,hsl(240, 65%, 55%), hsl(240, 70%, 65%))",
+  success:
+    "radial-gradient(circle at center,hsl(120, 65%, 55%), hsl(120, 70%, 65%)",
 
-   recording: "radial-gradient(circle at center,hsl(60, 65%, 55%), hsl(60, 70%, 65%)",
+  recording:
+    "radial-gradient(circle at center,hsl(60, 65%, 55%), hsl(60, 70%, 65%)",
+};
 
-  };
-
-const Orb: React.FC<OrbProps> = ({ color , children}) => {
-    const controls = useAnimation();
-  
+const Orb: React.FC<OrbProps> = ({ color, children }) => {
+  const controls = useAnimation();
 
   useEffect(() => {
     // Breathing effect
@@ -77,7 +79,6 @@ const Orb: React.FC<OrbProps> = ({ color , children}) => {
         }}
       >
         {children}
-
 
         {/* Nested Light Patterns */}
         <motion.div

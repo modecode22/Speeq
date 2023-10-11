@@ -14,7 +14,7 @@ const AudioPlayer = ({ src }: AudioPlayerProps) => {
 
   useEffect(() => {
     const audio = audioRef.current;
-    
+
     if (audio) {
       audio.play(); // Play the audio when the component is loaded.
     }
@@ -48,7 +48,8 @@ const AudioPlayer = ({ src }: AudioPlayerProps) => {
 
   useEffect(() => {
     if (audioRef.current && outputDevice) {
-      (audioRef.current as any).setSinkId(outputDevice)
+      (audioRef.current as any)
+        .setSinkId(outputDevice)
         .catch((err: unknown) => {
           console.warn("Error setting output device:", JSON.stringify(err));
         });
@@ -56,7 +57,7 @@ const AudioPlayer = ({ src }: AudioPlayerProps) => {
   }, [outputDevice]);
 
   return (
-    <div className="w-full">   
+    <div className="w-full">
       <audio ref={audioRef} src={src}>
         Your browser does not support the audio element.
       </audio>
@@ -66,15 +67,7 @@ const AudioPlayer = ({ src }: AudioPlayerProps) => {
 
 export default AudioPlayer;
 
-
-
-
-
-
-
-
-
-// ! origenal one 
+// ! origenal one
 // import { useState, useRef, useEffect } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
 // import { RiDownload2Fill, RiPlayFill, RiSendPlaneFill, RiStopFill } from "react-icons/ri";
@@ -90,7 +83,7 @@ export default AudioPlayer;
 //   const [isPlaying, setIsPlaying] = useState(false);
 //   const [progress, setProgress] = useState(0);
 //   const audioRef = useRef<HTMLAudioElement | null>(null);
-//   const {device}= useSettings();  
+//   const {device}= useSettings();
 //   useEffect(() => {
 //     const audio = audioRef.current;
 
@@ -141,8 +134,6 @@ export default AudioPlayer;
 //     };
 //   }, []);
 
-
-
 //   useEffect(() => {
 //     if (audioRef.current && device) {
 //       (audioRef.current as any).setSinkId(device)
@@ -150,11 +141,11 @@ export default AudioPlayer;
 //           console.warn("Error setting output device:",JSON.stringify(err) );
 //         });
 //     }
-    
+
 //   }, [device]);
 
 //   return (
-//     <div className="w-full">   
+//     <div className="w-full">
 //       <audio ref={audioRef} src={src}>
 //         Your browser does not support the audio element.
 //       </audio>
