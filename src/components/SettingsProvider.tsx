@@ -9,8 +9,10 @@ const SettingsContext = createContext<ContextType>({
   updateFromLanguage: () => {},
   toLanguage: "English",
   updateToLanguage: () => {},
-  device: undefined,
-  updateDevice: () => {},
+  outputDevice: undefined,
+  updateOutputDevice: () => {},
+  inputDevice: undefined,
+  updateInputDevice: () => {},
   devices: []
 });
 
@@ -39,7 +41,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [theme, setTheme] = useState<ThemeType>(getFromLocalStorage("theme", "dark"));
   const [fromLanguage, setFromLanguage] = useState<string>(getFromLocalStorage("fromlang", "English"));
   const [toLanguage, setToLanguage] = useState<string>(getFromLocalStorage("tolang", "English"));
-  const [device, setDevice] = useState<string | undefined>(getFromLocalStorage("device", undefined));
+  const [outputDevice, setOutputDevice] = useState<string | undefined>(getFromLocalStorage("outputdevice", undefined));
+  const [inputDevice, setInputDevice] = useState<string | undefined>(getFromLocalStorage("inputdevice", undefined));
   const [devices, setDevices] = useState<MediaDeviceInfo[]>([]);
 
   // Update and Store functions
@@ -59,8 +62,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   useEffect(() => {
     navigator.mediaDevices.getUserMedia({  audio: true })
     .then(stream =>{
-      if(device) {
-        handleAudioStream(stream,device);
+      if(inputDevice) {
+        handleAudioStream(stream,inputDevice);
       }})
     .catch(error => console.error("Error accessing microphone.", error));
   
@@ -71,13 +74,13 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
           const audioDevices = allDevices.filter(device => device.kind === 'audiooutput');
           setDevices(audioDevices);
           
-          if (!device && audioDevices.length > 0) {
+          if (!outputDevice && audioDevices.length > 0) {
 
-            updateAndStore("device", audioDevices[0].deviceId, setDevice);
+            updateAndStore("device", audioDevices[0].deviceId, setOutputDevice);
           }
         });
     }
-  }, [device]);
+  }, [outputDevice,inputDevice]);
 
   return (
     <SettingsContext.Provider
@@ -88,8 +91,10 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         updateFromLanguage: (value: string) => updateAndStore("fromlang", value, setFromLanguage),
         toLanguage,
         updateToLanguage: (value: string) => updateAndStore("tolang", value, setToLanguage),  
-        device,
-        updateDevice: (value: string) => updateAndStore("device", value, setDevice),
+        outputDevice,
+        updateOutputDevice: (value: string) => updateAndStore("outputdevice", value, setOutputDevice),
+        inputDevice,
+        updateInputDevice: (value: string) => updateAndStore("inputdevice", value, setInputDevice),
         devices
       }}
     >
