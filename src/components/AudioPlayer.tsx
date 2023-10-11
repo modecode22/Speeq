@@ -10,7 +10,7 @@ const AudioPlayer = ({ src }: AudioPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const { device } = useSettings();
+  const { outputDevice } = useSettings();
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -47,13 +47,13 @@ const AudioPlayer = ({ src }: AudioPlayerProps) => {
   }, []);
 
   useEffect(() => {
-    if (audioRef.current && device) {
-      (audioRef.current as any).setSinkId(device)
+    if (audioRef.current && outputDevice) {
+      (audioRef.current as any).setSinkId(outputDevice)
         .catch((err: unknown) => {
           console.warn("Error setting output device:", JSON.stringify(err));
         });
     }
-  }, [device]);
+  }, [outputDevice]);
 
   return (
     <div className="w-full">   
