@@ -16,7 +16,9 @@ type ThemeArray = [
     updateFromLanguage: (language: string) => void;
     toLanguage: string;
     updateToLanguage: (language: string) => void;
-    device: string | undefined;
-    updateDevice: (device: string) => void;
+    outputDevice: string | undefined;
+    updateOutputDevice: (device: string) => void;
+    inputDevice: string | undefined;
+    updateInputDevice: (device: string) => void;
     devices: MediaDeviceInfo[];
   };
